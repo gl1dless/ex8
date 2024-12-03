@@ -469,7 +469,7 @@
                 const pager = document.getElementById('pager');
                 
                 const totalImages = 8;
-                const imagesPerPage = 3;  
+                const imagesPerPage = 2;  
                 const totalPages = Math.ceil(totalImages / imagesPerPage);
                 let currentPage = 0;
             
@@ -584,7 +584,7 @@
                         body: JSON.stringify(formData)
                     })
                     .then(response => {
-                        if (!response.ok) throw new Error('Ошибка отправки формы');
+                        if (!response.ok) throw new Error('Форма успешно отправлена!');
                         return response.json();
                     })
                     .then(data => {
