@@ -527,12 +527,12 @@
                 const closePopupButton = document.getElementById('closePopup');
                 const formMessage = document.getElementById('formMessage');
                 
-                // Функция для открывания попапа
+               
                 const openPopup = () => {
                     popup.style.display = 'flex';
                     history.pushState({ popup: true }, '');
             
-                    // Восстановление ранее введенных значений из LocalStorage
+                   
                     document.getElementById('fullname').value = localStorage.getItem('fullname') || '';
                     document.getElementById('email').value = localStorage.getItem('email') || '';
                     document.getElementById('phone').value = localStorage.getItem('phone') || '';
@@ -540,7 +540,7 @@
                     document.getElementById('message').value = localStorage.getItem('message') || '';
                 };
             
-                // Функция для закрывания попапа
+                
                 const closePopup = () => {
                     popup.style.display = 'none';
                     history.back();
@@ -549,7 +549,7 @@
                 openPopupButton.addEventListener('click', openPopup);
                 closePopupButton.addEventListener('click', closePopup);
             
-                // Обработка события закрытия попапа при нажатии "Назад"
+                
                 window.onpopstate = function(event) {
                     if (event.state && event.state.popup) {
                         closePopup();
@@ -557,16 +557,16 @@
                 };
             
                 document.getElementById('feedbackForm').addEventListener('submit', function(event) {
-                    event.preventDefault(); // Предотвратить перезагрузку страницы
+                    event.preventDefault(); 
             
-                    // Сохранение введённых значений в LocalStorage
+                    
                     localStorage.setItem('fullname', document.getElementById('fullname').value);
                     localStorage.setItem('email', document.getElementById('email').value);
                     localStorage.setItem('phone', document.getElementById('phone').value);
                     localStorage.setItem('organization', document.getElementById('organization').value);
                     localStorage.setItem('message', document.getElementById('message').value);
             
-                    // Отправка данных формы на сервер
+                    
                     const formData = {
                         fullname: document.getElementById('fullname').value,
                         email: document.getElementById('email').value,
@@ -576,7 +576,7 @@
                         consent: document.getElementById('consent').checked
                     };
             
-                    fetch('https://formcarry.com/s/62n0wPM4XPP', { // Замените URL на ваш URL
+                    fetch('https://formcarry.com/s/62n0wPM4XPP', { 
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -589,7 +589,7 @@
                     })
                     .then(data => {
                         formMessage.textContent = 'Форма успешно отправлена!';
-                        // Очистка LocalStorage и формы
+                      
                         localStorage.clear();
                         document.getElementById('feedbackForm').reset();
                     })
