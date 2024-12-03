@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .gallery {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .gallery-slide {
+            min-width: 33.33%; 
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover; 
+            border-radius: 10px;
+            display: block;
+        }
+        .arrows {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .arrow {
+            cursor: pointer;
+            user-select: none;
+            font-size: 24px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .pager {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-slide {
+                min-width: 100%; 
+            }
+            .popup {
+            display: none; /* Скрываем попап по умолчанию */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .close-button {
+            cursor: pointer;
+            color: #007bff;
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+        }
+    }
+        
+    </style>
+</head>
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid p-1" style="background: url(./img/шапка.jpg);">
+        <header class="d-flex flex-wrap">
+            <div class="logo" ><a href="#"><img src="./img/main.png" alt="Описание картинки для скрин-ридеров и поисковиков" /></a></div>
+            <div class="name"><a href="https://cats.ru/"><img src="./img/mysite.png" alt="МойСайт"></a></div>
+    
+          <ul class="nav nav-pills">
+            <li class="nav-item p-1"><a href="#" class="nav-link p-0"><img src="./img/1.png" alt=""></a></li>
+            <li class="nav-item p-1"><a href="#" class="nav-link p-0"><img src="./img/2.png" alt=""></a></li>
+            <li class="nav-item p-1"><a href="#" class="nav-link p-0"><img src="./img/3.png" alt=""></a></li>
+          </ul>
+        </header>
+    </div>
+    <div class="mx-auto container-fluid " id="main">
+        <div class="container d-flex flex-column " style="background: url(.//img/4.jpg); border-left: 5px solid; border-right: 5px solid;">
+             <div id="ssilk">
+                <ul >  
+                    <br><li><a href="http://kubsu.ru/" style="background-color: rgb(221, 176, 176);">1.Ссылка КубГУ на главну стр</a></li>
+                        <p></p>
+                    <li><a href="https://kubsu.ru/"style="background-color: darkgrey;">2.Ссылка КубГУ на стр в формате https</a></li>
+                        <p><a name top></a></p> <!--якорь наверх-->
+                    <li><b>3.Ссылка на картинку с цветочком  </b></li>
+                        <p></p>
+                    <li><img src=".//img/image.jpg" alt="НЕТ ИЗОБРАЖЕНИЯ" style="height: 150px ; overflow-x: scroll;" ></li> 
+                        <p></p>
+                    <li><a href="./Каталог всех заданий/внутрення стр.html"background-color: darkgrey;>4.Внутренняя страница </a></li>
+                        <p></p>
+                    <li><a href="index.html"style="background-color: darkgrey;">5.Главная страница </a></li>
+                        <p></p>
+                    <li><a href="#top"style="background-color: darkgrey;">6.Якорь</a></li>
+                        <p></p>
+                    <li><a href="https://vk.com/steazy" style="color: red; font-family: 'Arial', sans-serif; font-size: 12px;"style="background-color: darkgrey;">7.Ссылка с 3 параметрами</a></li>
+                        <p></p>
+                    <li><a href="#bottom">8.id</a></li>
+                        <p></p>
+                    <li><a href="в этом же каталоге.html">9.Относительная в этом каталоге</a></li>
+                        <p></p>
+                    <li><a href="./about/10.html">10.Относительная каталога about</a></li>
+                        <p></p>
+                    <li><a href="../">11.Относительная выше</a></li>
+                        <p></p>
+                    <li><a href="../../">12.Относительная выше 2 уровень</a></li>
+                        <p></p>
+                    <li><p>13.Задание в контексте.Посетите <a href="https://www.kubsu.ru">официальный сайт Кубанского государственного университета</a> для получения более подробной информации.</p></li>
+                        <p></p>
+                    <li><a href="https://ru.w3docs.com/uchebnik-html/html-ssylki.html#bottom">14.Якорь на другом сайте</a></li>
+                    <p></p>
+                    <li><b>15.Ссылка в фото  </b></li>
+                        <img src="./img/рикролл.jpg" alt="Картиночка ютубчика"  usemap="#Navigator" height="150px" style="overflow-x: scroll;">
+                        <map name="Navigator">
+                            <area shape="rect" coords="0,0, 250,200" href="https://www.youtube.com/watch?v=xvFZjo5PgG0" alt="ссылка на видео">
+                        </map>
+                    <li><a href="##">16.Ссылка с пустым href</a></li>
+                        <p></p>
+                    <li><a>17.Ссылка без href</a></li>
+                        <p></p>
+                    <li><a href="https://minecraft.fandom.com/" rel="nofollow">18.Ссылка по которой запрещен переход поисковикам </a></li>
+                        <p></p>
+                    <li><noindex><a href="https://doka.guide/">19.Ссылка без индексирования</a></noindex></li>
+                        <p></p>
+                    <li>20.Список ссылок</li>
+                    <ol>
+                        <li><a href="https://ru.wikipedia.org/wiki/Подсолнечник">Подсолнечник</a></li>
+                        <li><a href="https://ru.wikipedia.org/wiki/Астровые">Астровые</a></li>
+                        <li><a href="https://ru.wikipedia.org/wiki/Растения">Растения</a></li>
+                    </ol>
+
+                        <p id="bottom"></p>
+                    <li><a href="ftp://user:pass123@tavalik.ru">21.Cсылку на файл на сервере FTP с авторизацией;</a></li> 
+                </ul>
+            </div>
+            <div class="container m-1" style=" overflow-x:scroll;">
+                <table class="table table-hover m-0" id="tabl">
+                    <thead>
+                        <tr>
+                            <th>Порода</th>
+                            <th>Возраст(лет)</th>
+                            <th>Вес(кг)</th>
+                            <th>Окрас</th>
+                            <th>Характер</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style="background-color: #f2f2f2;">
+                            <td>Британская</td>
+                            <td>3-15</td>
+                            <td>4-8</td>
+                            <td>Серый, голубой</td>
+                            <td rowspan="2">Спокойный, ласковый</td>
+                          </tr>
+                          <tr>
+                            <td>Мейн-кун</td>
+                            <td>3-12</td>
+                            <td>5-10</td>
+                            <td>Разнообразный</td>
+                          </tr>
+                          <tr style="background-color: #f2f2f2;">
+                            <td>Сиамская</td>
+                            <td>2-15</td>
+                            <td>3-6</td>
+                            <td>Кремовый, коричневый</td>
+                            <td>Активный, общительный</td>
+                          </tr>
+                          <tr>
+                            <td>Норвежская лесная</td>
+                            <td>3-10</td>
+                            <td>4-9</td>
+                            <td>Серый, коричневый</td>
+                            <td>Независимый</td>
+                          </tr>
+                          <tr style="background-color: #f2f2f2;">
+                            <td>Русская голубая</td>
+                            <td>3-15</td>
+                            <td>3-6</td>
+                            <td>Серо-голубой</td>
+                            <td>Ласковый, чувствительный</td>
+                          </tr>
+                          <tr>
+                            <td>Абиссинская</td>
+                            <td>2-14</td>
+                            <td>3-5</td>
+                            <td>Рыжий, шоколадный</td>
+                            <td>Умный, любознательный</td>
+                        </tr>
+                      </tbody>
+               </table>
+           </div>
+
+           <div class="calc p-3">
+
+        
+
+            
+
+        <h1>Калькулятор стоимости корма для кошек</h1>
+
+    <label for="quantity">Количество упаковок корма:</label>
+    <input type="number" id="quantity" min="1" value="1">
+
+    <fieldset>
+        <legend>Порода кошки:</legend>
+        <label>
+            <input type="radio" name="catBreed" value="Британская" checked> Британская
+        </label>
+        <label>
+            <input type="radio" name="catBreed" value="Сиамская"> Сиамская
+        </label>
+        <label>
+            <input type="radio" name="catBreed" value="Мейн-кун"> Мейн-кун
+        </label>
+        <label>
+            <input type="radio" name="catBreed" value="Персидская"> Персидская
+        </label>
+        <label>
+            <input type="radio" name="catBreed" value="Русская голубая"> Русская голубая
+        </label>
+        <label>
+            <input type="radio" name="catBreed" value="Абиссинская"> Абиссинская
+        </label>
+    </fieldset>
+
+    <label for="treats">Выберите лакомство:</label>
+    <select id="treats">
+        <option value="none">---- Выберите ----</option>
+        <option value="Лакомство 1">Лакомство 1</option>
+        <option value="Лакомство 2">Лакомство 2</option>
+        <option value="Лакомство 3">Лакомство 3</option>
+    </select>
+
+    <fieldset>
+        <legend>Тип доставки:</legend>
+        <label>
+            <input type="checkbox" id="standard" value="Обычная"> Обычная
+        </label>
+        <label>
+            <input type="checkbox" id="fast" value="Быстрая"> Быстрая
+        </label>
+        <label>
+            <input type="checkbox" id="superFast" value="Супербыстрая"> Супербыстрая
+        </label>
+    </fieldset>
+
+    <button onclick="calculateTotal()">Рассчитать стоимость</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculateTotal() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const catBreed = document.querySelector('input[name="catBreed"]:checked').value;
+            const treat = document.getElementById('treats').value;
+            
+            let basePrice = 0;
+
+            
+            switch (catBreed) {
+                case "Британская":
+                    basePrice = 350;
+                    break;
+                case "Сиамская":
+                    basePrice = 400;
+                    break;
+                case "Мейн-кун":
+                    basePrice = 450;
+                    break;
+                case "Персидская":
+                    basePrice = 500;
+                    break;
+                case "Русская голубая":
+                    basePrice = 370;
+                    break;
+                case "Абиссинская":
+                    basePrice = 390;
+                    break;
+            }
+
+           
+            if (treat === "Лакомство 1") {
+                basePrice += 50;
+            } else if (treat === "Лакомство 2") {
+                basePrice += 70;
+            } else if (treat === "Лакомство 3") {
+                basePrice += 90;
+            }
+
+           
+            const standard = document.getElementById('standard').checked;
+            const fast = document.getElementById('fast').checked;
+            const superFast = document.getElementById('superFast').checked;
+
+            if (standard) basePrice += 0;     
+            if (fast) basePrice += 30;        
+            if (superFast) basePrice += 50;   
+
+            
+            const totalCost = basePrice * quantity;
+
+            
+            document.getElementById('result').innerText = `Итоговая стоимость: ${totalCost}  руб.`;
+        }
+    </script>
+    </div><br>
+
+
+
+
+
+        <div class="container" id="form">
+            <div style="background:url(./ассеты/img/4.jpg);">
+                <form action="/"
+                method="POST">
+
+            <label>
+                ФИО:<br />
+                <input name="field-name-1"
+            
+                placeholder="Введите ваше ФИО" />
+            </label><br />
+
+                <label> Текстовое поле tel:<br />
+                <input type="tel" id="contact" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}" 
+                    required 
+                    placeholder="Введите ваш номер"/>
+                    
+                </label> <br />
+
+            <label>
+                Текстовое поле email:<br />
+                <input name="field-email"
+                type="email"
+                required 
+                placeholder="Введите вашу почту" />
+            </label><br />
+
+            <label>
+                Текстовое поле даты:<br />
+                <input name="field-date"
+                value=""
+                type="date"
+                required />
+            </label><br />
+
+            Выбор пола:<br />
+            <label><input type="radio" checked="checked"
+                name="radio-group-1" value="Значение1" />
+                Мужской</label>
+            <label><input type="radio"
+                name="radio-group-1" value="Значение2" />
+                Женский</label>
+                <label><input type="radio"
+                    name="radio-group-1" value="Значение3" />
+                    Не скажу</label><br />
+
+                <label>
+                    Список любимых языков программирования:
+                    <br />
+                    <select name="field-name-4[]"
+                        multiple="multiple">
+                        <option value="Значение1">Pascal</option>
+                        <option value="Значение2" selected="selected">С</option>
+                        <option value="Значение3" selected="selected">С++</option>
+                        <option value="Значение4" selected="selected">JavaScript</option>
+                        <option value="Значение5" selected="selected">PHP</option>
+                        <option value="Значение6" selected="selected">Python</option>
+                        <option value="Значение7" selected="selected">Java</option>
+                        <option value="Значение8" selected="selected">Haskel</option>
+                        <option value="Значение9" selected="selected">Clojure</option>
+                        <option value="Значение10" selected="selected">Prolog</option>
+                        <option value="Значение11" selected="selected">Scala</option>
+                    </select>
+                </label><br />
+                
+                <label>
+                    Биография:<br />
+                    <textarea name="field-name-2" required>Напишите свою очень интересную биографию</textarea>
+                    
+                </label><br />
+                Ваши личные данные будут модерироваться:<br />
+                <label><input type="checkbox" 
+                    name="check-1" required />
+                    подвердить обработку персональных данных 
+                </label><br />
+
+                Чтобы записать все ваши данные нажмите на кнопку "Сохранить":
+                <input type="submit" value="Сохранить" />
+            </form>
+            <div class="gallery">
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-slide"><img src="./img/12.webp" alt="Image 1"></div>
+                    <div class="gallery-slide"><img src="./img/13.webp" alt="Image 2"></div>
+                    <div class="gallery-slide"><img src="./img/14.jpg" alt="Image 3"></div>
+                    <div class="gallery-slide"><img src="./img/15.png" alt="Image 4"></div>
+                    <div class="gallery-slide"><img src="./img/16.jpg" alt="Image 5"></div>
+                    <div class="gallery-slide"><img src="./img/17.jpg" alt="Image 6"></div>
+                    <div class="gallery-slide"><img src="./img/18.webp" alt="Image 7"></div>
+                    <div class="gallery-slide"><img src="./img/19.jpg" alt="Image 8"></div>
+                </div>
+            </div>
+            
+            <div class="arrows">
+                <div class="arrow" id="prevArrow">❮</div>
+                <div class="arrow" id="nextArrow">❯</div>
+            </div>
+            
+            <div class="pager" id="pager"></div>
+            
+            <script>
+                const track = document.getElementById('galleryTrack');
+                const prevArrow = document.getElementById('prevArrow');
+                const nextArrow = document.getElementById('nextArrow');
+                const pager = document.getElementById('pager');
+                
+                const totalImages = 8;
+                const imagesPerPage = 3;  
+                const totalPages = Math.ceil(totalImages / imagesPerPage);
+                let currentPage = 0;
+            
+                function updatePager() {
+                    pager.innerText = `Страница ${currentPage + 1} из ${totalPages}`;
+                }
+            
+                function updateGallery() {const offset = -(currentPage * (100 / totalPages)); 
+                    track.style.transform = `translateX(${offset}%)`;
+                    updatePager();
+                }
+            
+                prevArrow.addEventListener('click', () => {
+                    if (currentPage > 0) {
+                        currentPage--;
+                        updateGallery();
+                    }
+                });
+            
+                nextArrow.addEventListener('click', () => {
+                    if (currentPage < totalPages - 1) {
+                        currentPage++;
+                        updateGallery();
+                    }
+                });
+            
+                
+                updateGallery();
+            </script>
+            <button id="openPopup">Оставить отзыв</button>
+
+            <div class="popup" id="popup">
+                <div class="form-container">
+                    <span class="close-button" id="closePopup">✖️</span>
+                    <h2>Форма обратной связи</h2>
+                    <form id="feedbackForm">
+                        <input type="text" id="fullname" placeholder="ФИО" required>
+                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="tel" id="phone" placeholder="Телефон" required>
+                        <input type="text" id="organization" placeholder="Организация">
+                        <textarea id="message" placeholder="Сообщение" required></textarea>
+                        <label>
+                            <input type="checkbox" id="consent" required>
+                            Согласен с политикой обработки персональных данных
+                        </label>
+                        <button type="submit">Отправить</button>
+                    </form>
+                    <div class="message" id="formMessage"></div>
+                </div>
+            </div>
+            
+            <script>
+                const popup = document.getElementById('popup');
+                const openPopupButton = document.getElementById('openPopup');
+                const closePopupButton = document.getElementById('closePopup');
+                const formMessage = document.getElementById('formMessage');
+                
+                // Функция для открывания попапа
+                const openPopup = () => {
+                    popup.style.display = 'flex';
+                    history.pushState({ popup: true }, '');
+            
+                    // Восстановление ранее введенных значений из LocalStorage
+                    document.getElementById('fullname').value = localStorage.getItem('fullname') || '';
+                    document.getElementById('email').value = localStorage.getItem('email') || '';
+                    document.getElementById('phone').value = localStorage.getItem('phone') || '';
+                    document.getElementById('organization').value = localStorage.getItem('organization') || '';
+                    document.getElementById('message').value = localStorage.getItem('message') || '';
+                };
+            
+                // Функция для закрывания попапа
+                const closePopup = () => {
+                    popup.style.display = 'none';
+                    history.back();
+                };
+            
+                openPopupButton.addEventListener('click', openPopup);
+                closePopupButton.addEventListener('click', closePopup);
+            
+                // Обработка события закрытия попапа при нажатии "Назад"
+                window.onpopstate = function(event) {
+                    if (event.state && event.state.popup) {
+                        closePopup();
+                    }
+                };
+            
+                document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+                    event.preventDefault(); // Предотвратить перезагрузку страницы
+            
+                    // Сохранение введённых значений в LocalStorage
+                    localStorage.setItem('fullname', document.getElementById('fullname').value);
+                    localStorage.setItem('email', document.getElementById('email').value);
+                    localStorage.setItem('phone', document.getElementById('phone').value);
+                    localStorage.setItem('organization', document.getElementById('organization').value);
+                    localStorage.setItem('message', document.getElementById('message').value);
+            
+                    // Отправка данных формы на сервер
+                    const formData = {
+                        fullname: document.getElementById('fullname').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        organization: document.getElementById('organization').value,
+                        message: document.getElementById('message').value,
+                        consent: document.getElementById('consent').checked
+                    };
+            
+                    fetch('https://example.com/api/submit', { // Замените URL на ваш URL
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Ошибка отправки формы');
+                        return response.json();
+                    })
+                    .then(data => {
+                        formMessage.textContent = 'Форма успешно отправлена!';
+                        // Очистка LocalStorage и формы
+                        localStorage.clear();
+                        document.getElementById('feedbackForm').reset();
+                    })
+                    .catch(error => {
+                        formMessage.textContent = 'Произошла ошибка: ' + error.message;
+                    });
+                });
+            </script>
+            </div>
+        </div>
+        </div>
+    </div>
+<!---->       
+<div id="footer">
+    <p> (с) Бутченко Алексея ФКТиПМ 27/1</p>
+ </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+  const quantityInput = document.getElementById('quantity');
+  const serviceRadios = document.querySelectorAll('input[name="service"]');
+  const optionSelect = document.getElementById('option');
+  const propertyCheckbox = document.getElementById('property');
+  const calculateButton = document.getElementById('calculate');
+  const resultDiv = document.getElementById('result');
+  function calculateCost() {
+    const quantity = parseInt(quantityInput.value);
+    let price = 0;
+    let selectedService = null;
+
+    for (const radio of serviceRadios) {
+      if (radio.checked) {
+        selectedService = radio;
+        price = parseInt(radio.value);
+        break;
+      }
+    }
+
+  if (selectedService) {
+      if (selectedService.id === 'service4' || selectedService.id === 'service5' || selectedService.id === 'service6') {
+        optionSelect.style.display = 'block';
+        propertyCheckbox.style.display = 'none';
+        if(selectedService.id === 'service4' || selectedService.id === 'service5'){
+          propertyCheckbox.style.display = 'block';
+          if (propertyCheckbox.checked ) {
+              price += parseInt(propertyCheckbox.value);
+          }   
+          }
+        price += parseInt(optionSelect.value);
+      }
+      else if (selectedService.id === 'service3' || selectedService.id === 'service1' || selectedService.id === 'service2') {
+        propertyCheckbox.style.display = 'none';
+        optionSelect.style.display = 'none';
+        if(selectedService.id === 'service3' || selectedService.id === 'service1'){
+          propertyCheckbox.style.display = 'block';
+          if (propertyCheckbox.checked ) {
+              price += parseInt(propertyCheckbox.value);
+          }
+        } 
+      }
+      else {
+        optionSelect.style.display = 'none';
+        propertyCheckbox.style.display = 'none';
+      }
+    }
+    if (quantity <= 0 || isNaN(quantity)) {
+        resultDiv.textContent = 'Некорректное количество товара!';
+        return;
+    }
+    const totalCost = quantity * price;
+    resultDiv.textContent = `Стоимость заказа: ${totalCost} руб.`;
+  }
+  serviceRadios.forEach(radio => {
+    radio.addEventListener('change', calculateCost);
+  });
+  calculateButton.addEventListener('click', calculateCost);
+  </script>
+</body>
+
+</html>

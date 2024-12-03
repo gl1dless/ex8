@@ -1,0 +1,93 @@
+
+header  {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+    /* logo */
+
+
+.logo img { 
+    transition: 0.3s;
+}
+.logo img:hover {
+    transform:scale(1.1)
+}
+    /* name */
+.name{
+    display: flex;
+    
+    align-items: center;
+
+}
+.name img{
+    transition: 0.3s;
+    max-width: 100%;
+   height: auto;
+}
+.name img:hover {
+    transform:scale(1.1)
+}
+    /* nav */
+
+
+.nav li{
+    list-style-type: none;
+    
+}
+.ul{
+    list-style-type: none;
+}
+.nav img{
+    width: 50px;
+    transition: 0.3s;
+}
+
+.nav img:hover {
+    transform:scale(1.1)
+}
+/* main */
+#main{
+    display: flex;
+    flex-direction: column;
+    
+    background: url(./img/фон.jpg);
+}
+.block{
+    border-left: black 3px solid;
+    border-right: black 3px solid;
+}
+/* calc */
+#calc
+{
+    
+}
+@media (min-width: 769px)
+{
+    .logo img{
+        width: 100px;
+    }
+   
+    
+}
+@media (max-width: 768px)
+{
+    .logo img{
+        max-width: 100px;
+        height: auto;
+    }
+    #ssilk{
+        order: 3;
+    }
+    table{
+        
+        overflow-x: scroll;
+        order: 1;
+    }
+    #calc{
+        order:2;
+    }
+    #form{
+        order: 4;
+    }
+}
